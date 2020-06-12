@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorApp1.Model
+namespace BlazorApp1.Models
 {
     public interface IIdeaRepository
     {

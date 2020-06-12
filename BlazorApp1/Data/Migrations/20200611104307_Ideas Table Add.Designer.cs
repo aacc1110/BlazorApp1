@@ -21,7 +21,7 @@ namespace BlazorApp1.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BlazorApp1.Model.Idea", b =>
+            modelBuilder.Entity("BlazorApp1.Models.Idea", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

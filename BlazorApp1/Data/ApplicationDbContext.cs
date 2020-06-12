@@ -1,4 +1,4 @@
-﻿using BlazorApp1.Model;
+﻿using BlazorApp1.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorApp1.Model
+namespace BlazorApp1.Models
 {
     public class IdeaRepository : IIdeaRepository  // 인터페이스 레포지토리를 상속받는 서비스 클래스
     {

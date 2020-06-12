@@ -1,6 +1,41 @@
-﻿@page "/Ideas"
-<h3>Ideas</h3>
+﻿@page "/ideass"
+
+
+@inject IIdeaRepository repository
+
+<h3>ideass</h3>
+
+@if (ideas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var idea in ideas)
+            {
+                <tr>
+                    <td>@idea.Id</td>
+                    <td>@idea.Note</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
+    private List<Idea> ideas;
 
+    protected override async Task OnInitializedAsync()
+    {
+        ideas = await repository.GetIdeas();
+    }
 }
+

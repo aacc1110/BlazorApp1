@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorApp1.Model
+namespace BlazorApp1.Models
 {
     public class Idea
     {
