@@ -9,9 +9,12 @@
 {
     <p><em>Loading...</em></p>
 }
+else if (ideas.Count == 0 ) {
+    <p><em>No Data...</em></p>
+}
 else
 {
-    <table class="table">   
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -29,23 +32,29 @@ else
         </tbody>
     </table>
 }
+<input type="button" value="글쓰기" @onclick="btnCreate_Click" class="btn btn-primary" />
 @if (isShow)
 {
-    <div class="modal fade show" tabindex="-1" role="dialog" style="display:block">
+    <div class="modal fade show" tabindex="-1" role="dialog" style="display:block;" id="myModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="btnClose_Click">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">ID</label>
+                        <input type="text" class="form-control" @bind="idea.Note">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" @onclick="btnSave_Click">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="btnClose_Click">Close</button>
                 </div>
             </div>
         </div>
@@ -53,6 +62,8 @@ else
 }
 
 @code {
+    Idea idea = new Idea();
+
     private bool isShow = false;
 
     private List<Idea> ideas;
@@ -61,6 +72,24 @@ else
     {
         //await task.delay(3000);
         ideas = await repository.GetIdeas();
+    }
+    private void btnCreate_Click()
+    {
+        isShow = true;
+    }
+    private void btnClose_Click()
+    {
+        isShow = false;
+        idea = new Idea();
+    }
+    private async Task btnSave_Click()
+    {
+        await repository.AddIdea(idea);
+        isShow = false;
+        ideas = await repository.GetIdeas();
+        idea = new Idea();
+
+        //StateHasChanged();
     }
 }
 
